@@ -221,10 +221,5 @@ mcopy -i disk.img whitelist.txt ::EFI/Boot/tools/
 - [PI Boot Flow (SEC, PEI, DXE, BDS)](https://github.com/tianocore/tianocore.github.io/wiki/PI-Boot-Flow)
 - [OSDev Wiki — UEFI](https://wiki.osdev.org/UEFI)
 
----
 
-## Licencia
 
-BSD-2-Clause. Consulta el fichero [LICENSE](LICENSE) para más detalles.
-
-> ⚠️ Esta herramienta tiene fines exclusivamente académicos e investigadores. Su uso en sistemas sin autorización expresa del propietario puede constituir un delito.
