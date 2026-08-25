@@ -1,0 +1,24 @@
+## @file
+#  Forensic UEFI Boot Tool — Declaracion del paquete
+#
+#  Paquete de aplicaciones UEFI para inspeccion forense del entorno
+#  de firmware. Incluye cuatro modulos autonomos:
+#    - Menu_kit:      Orquestador y menu principal
+#    - Files_shows:   Listado de archivos EFI con hash SHA-256
+#    - Show_info:     Inspeccion de NVRAM, memoria y firmware
+#    - Forense_tool:  Reporte forense, whitelist, GPT y TPM2
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  DEC_SPECIFICATION = 0x00010017
+  PACKAGE_NAME      = ForensicPkg
+  PACKAGE_GUID      = A1B2C3D4-E5F6-7890-ABCD-EF1234567890
+  PACKAGE_VERSION   = 1.0
+
+[Includes]
+  Menu_kit
+  Files_shows
+  Show_info
+  Forense_tool

@@ -1,0 +1,39 @@
+
+
+[Defines]
+  INF_VERSION                    = 0x00010017
+  BASE_NAME                      = Files_shows
+  FILE_GUID                      = 87654321-4321-4321-4321-CBA987654321
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = UefiMain
+
+[Sources]
+   Files_shows.c
+   Files_shows.h
+  
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+   CryptoPkg/CryptoPkg.dec
+
+[LibraryClasses]
+  UefiApplicationEntryPoint
+  UefiLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  PrintLib
+  BaseLib
+  DevicePathLib
+  BaseCryptLib
+
+[Protocols]
+  gEfiBlockIoProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+
+[Guids]
+  gEfiGlobalVariableGuid
+  gEfiFileInfoGuid

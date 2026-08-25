@@ -1,0 +1,44 @@
+
+
+[Defines]
+  INF_VERSION                    = 0x00010017
+  BASE_NAME                      = Forensic_Tool
+  FILE_GUID                      = 87654323-4321-4321-4321-CBA987654321
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = UefiMain
+
+[Sources]
+  Forense_tool.c
+  Forense_tool.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  CryptoPkg/CryptoPkg.dec
+  # Necesario para Protocol/Tcg2Protocol.h (EFI_TCG2_PROTOCOL).
+  # Si tu build no incluye SecurityPkg todavia, anade la ruta en
+  # Conf/target.txt (PACKAGES_PATH) o en el .dsc de tu plataforma.
+  SecurityPkg/SecurityPkg.dec
+
+[LibraryClasses]
+  UefiApplicationEntryPoint
+  UefiLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  BaseLib
+  PrintLib
+  BaseCryptLib
+
+[Protocols]
+  gEfiBlockIoProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+  gEfiLoadedImageProtocolGuid
+  gEfiTcg2ProtocolGuid
+
+[Guids]
+  gEfiGlobalVariableGuid
+  gEfiFileInfoGuid
+  gEfiImageSecurityDatabaseGuid

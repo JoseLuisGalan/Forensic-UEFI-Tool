@@ -1,0 +1,40 @@
+
+
+[Defines]
+  INF_VERSION                    = 0x00010017
+  BASE_NAME                      = Menu_kit_TFM
+  FILE_GUID                      = 67674321-4222-4321-4321-CBA987654321
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = UefiMain
+
+[Sources]
+  Menu_kit.c
+  Menu_kit.h
+  
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+   CryptoPkg/CryptoPkg.dec
+
+[LibraryClasses]
+  UefiApplicationEntryPoint
+  UefiLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  PrintLib
+  BaseLib
+  DevicePathLib
+  BaseCryptLib
+
+[Protocols]
+  gEfiBlockIoProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+  gEfiLoadedImageProtocolGuid
+
+[Guids]
+  gEfiGlobalVariableGuid
+  gEfiFileInfoGuid
