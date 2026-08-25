@@ -177,8 +177,7 @@ Create_directory (
     );
 
     if (!EFI_ERROR(Status)) {
-         Print(L"STATUS: %r\n", Status);
-  Pause();
+       
         Directory->Close(Directory);
     }
 
