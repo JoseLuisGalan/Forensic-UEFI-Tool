@@ -1,8 +1,4 @@
-/** @file
-  Forensic UEFI Boot Tool - Header
 
-  SPDX-License-Identifier: BSD-2-Clause-Patent
-**/
 
 #ifndef __FILES_SHOWS_H__
 #define __FILES_SHOWS_H__
