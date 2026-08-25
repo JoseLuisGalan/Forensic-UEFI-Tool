@@ -25,38 +25,41 @@ La herramienta permite a un analista forense inspeccionar desde el propio entorn
 ## Estructura del repositorio
 
 ```
-ForensicUEFI/
+Forensic-UEFI-Tool/
 │
-├── Menu_kit/
-│   ├── Menu_kit.c          # Punto de entrada y orquestador
-│   ├── Menu_kit.h
-│   └── Menu_kit.inf        # Descriptor EDK II (BASE_NAME: Menu_kit_TFM)
-│
-├── Files_shows/
-│   ├── Files_shows.c       # Escaneo recursivo + SHA-256 + paginación
-│   ├── Files_shows.h
-│   └── Files_shows.inf
-│
-├── Show_info/
-│   ├── Show_info.c         # NVRAM, Secure Boot, memoria, hardware
-│   ├── Show_info.h
-│   └── Show_info.inf
-│
-├── Forense_tool/
-│   ├── Forense_tool.c      # Reporte forense, whitelist, GPT, TPM2
-│   ├── Forense_tool.h
-│   └── Forense_tool.inf
-│
-├── ForensicPkg.dec         # Declaración del paquete EDK II
-├── ForensicPkg.dsc         # Descripción de compilación del paquete
+├── ForensicPkg/                    # Paquete EDK II — todo el código fuente
+│   ├── Menu_kit/
+│   │   ├── Menu_kit.c              # Punto de entrada y orquestador
+│   │   ├── Menu_kit.h
+│   │   └── Menu_kit.inf            # Descriptor EDK II (BASE_NAME: Menu_kit_TFM)
+│   │
+│   ├── Files_shows/
+│   │   ├── Files_shows.c           # Escaneo recursivo + SHA-256 + paginación
+│   │   ├── Files_shows.h
+│   │   └── Files_shows.inf
+│   │
+│   ├── Show_info/
+│   │   ├── Show_info.c             # NVRAM, Secure Boot, memoria, hardware
+│   │   ├── Show_info.h
+│   │   └── Show_info.inf
+│   │
+│   ├── Forense_tool/
+│   │   ├── Forense_tool.c          # Reporte forense, whitelist, GPT, TPM2
+│   │   ├── Forense_tool.h
+│   │   └── Forense_tool.inf
+│   │
+│   ├── ForensicPkg.dec             # Declaración del paquete EDK II
+│   └── ForensicPkg.dsc             # Descripción de compilación del paquete
 │
 ├── tools/
-│   └── whitelist.txt       # Hashes SHA-256 conocidos (uno por línea, 64 chars)
+│   └── whitelist.txt               # Hashes SHA-256 conocidos (uno por línea, 64 chars)
 │
-├── build.bat               # Script de compilación (Windows)
+├── compile_forensic.bat            # Script de compilación (Windows)
 ├── README.md
 └── LICENSE
 ```
+
+> **Importante:** la carpeta `ForensicPkg/` debe colocarse dentro del workspace de EDK II (`C:\edk2\ForensicPkg\`) para que el sistema de compilación pueda resolverla.
 
 ### Estructura en el USB/ESP tras la compilación
 
@@ -104,7 +107,7 @@ USB (FAT32)
 
 ## Instalación y compilación
 
-### 1. Clonar EDK II y este repositorio
+### 1. Clonar EDK II
 
 ```bat
 git clone https://github.com/tianocore/edk2.git
@@ -112,16 +115,24 @@ cd edk2
 git submodule update --init
 ```
 
-Clona este repositorio dentro del workspace de EDK II:
+### 2. Clonar este repositorio dentro del workspace de EDK II
 
 ```bat
-git clone https://github.com/tu-usuario/ForensicUEFI.git ForensicPkg
+git clone https://github.com/tu-usuario/Forensic-UEFI-Tool.git
 ```
+
+Copia la carpeta `ForensicPkg\` dentro de `C:\edk2\`:
+
+```
+C:\edk2\ForensicPkg\   ← aquí debe quedar el paquete
+```
+
+Copia también `compile_forensic.bat` y la carpeta `tools\` a la raíz de `C:\edk2\`.
 
 ### 2. Inicializar el entorno EDK II
 
 ```bat
-cd edk2
+cd C:\edk2
 edksetup.bat
 ```
 
@@ -133,16 +144,16 @@ edksetup.bat Rebuild
 
 ### 3. Compilar con el script incluido
 
-Desde la raíz del workspace de EDK II:
+Desde la raíz del workspace de EDK II (`C:\edk2`):
 
 ```bat
-build.bat
+compile_forensic.bat
 ```
 
-El script compila los cuatro módulos y organiza los binarios en la estructura correcta. Los `.efi` resultantes se encontrarán en:
+El script compila los cuatro módulos y organiza los binarios en la carpeta `output_efi\`. Los `.efi` también estarán disponibles en:
 
 ```
-Build\ForensicPkg\DEBUG_VS2019x86\X64\
+Build\ForensicPkg\DEBUG_VS2019\X64\
 ```
 
 ### 4. Preparar el USB de arranque
@@ -221,5 +232,4 @@ mcopy -i disk.img whitelist.txt ::EFI/Boot/tools/
 - [PI Boot Flow (SEC, PEI, DXE, BDS)](https://github.com/tianocore/tianocore.github.io/wiki/PI-Boot-Flow)
 - [OSDev Wiki — UEFI](https://wiki.osdev.org/UEFI)
 
-
-
+---
