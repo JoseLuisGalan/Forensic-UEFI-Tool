@@ -1,20 +1,4 @@
-/** @file
-  Forensic Extra - Reporting, NVRAM, GPT y TPM2.
 
-  NOTA IMPORTANTE:
-  - Este modulo NUNCA escribe en el disco/volumen que se esta analizando.
-    El log y la whitelist se leen/escriben siempre en el device handle
-    del propio binario (el medio de arranque de la herramienta), obtenido
-    via EFI_LOADED_IMAGE_PROTOCOL->DeviceHandle. Si vas a clonar este
-    patron en otro modulo, respeta esa misma regla.
-  - La parte de TPM2 (ShowTpm2Pcrs) construye manualmente el comando
-    TPM2_PCR_Read segun la TCG TPM2 Library Spec (Part 3, Commands) y lo
-    envia via EFI_TCG2_PROTOCOL->SubmitCommand. Es la parte mas avanzada
-    y menos probada del modulo: revisala y pruebala en OVMF+swtpm antes
-    de fiarte de sus resultados en un informe real.
-
-  SPDX-License-Identifier: BSD-2-Clause-Patent
-**/
 
 #include "Forense_tool.h"
 
