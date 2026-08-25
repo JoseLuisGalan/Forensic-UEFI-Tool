@@ -1,8 +1,4 @@
-/** @file
-  Forensic UEFI Boot Tool - Header
 
-  SPDX-License-Identifier: BSD-2-Clause-Patent
-**/
 
 #ifndef __MENU_KIT_H__
 #define __MENU_KIT_H__
