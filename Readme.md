@@ -221,6 +221,11 @@ mcopy -i disk.img Show_info.efi ::EFI/Boot/tools/
 mcopy -i disk.img Forensic_tool.efi ::EFI/Boot/tools/
 mcopy -i disk.img whitelist.txt ::EFI/Boot/tools/
 ```
+---
+
+## Prueba de funcionamiento
+
+![Texto alternativo](./IMG/Demostration.gif)
 
 ---
 
