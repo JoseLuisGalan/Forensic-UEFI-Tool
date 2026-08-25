@@ -1,12 +1,4 @@
-/** @file
-  Forensic Extra - Reporting, NVRAM, GPT y TPM2 para el conjunto de
-  herramientas UEFI Forensic Boot Tool.
 
-  Modulo standalone: se enlaza como aplicacion UEFI independiente para
-  poder ser cargado por el menu central via LoadImage/StartImage.
-
-  SPDX-License-Identifier: BSD-2-Clause-Patent
-**/
 
 #ifndef __FORENSE_TOOL_H__
 #define __FORENSE_TOOL_H__
